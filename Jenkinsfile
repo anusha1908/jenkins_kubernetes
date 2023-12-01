@@ -11,7 +11,7 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t cicdpipeline .'
+                    sh 'docker build -t yashodarg/cicdpipeline .'
                 }
             }
         }
@@ -19,7 +19,7 @@ pipeline {
             steps{
                 script{
                    sh 'docker login -u yashodarg -p Dockerhub2023$'
-                    sh 'docker push  cicdpipeline'
+                    sh 'docker push  yashodarg/cicdpipeline'
                 }
             }
         }
