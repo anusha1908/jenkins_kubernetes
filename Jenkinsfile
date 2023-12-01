@@ -3,7 +3,7 @@ pipeline {
     stages{
         stage('Build Maven'){
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/YashodaRG/k8s_jenkins_integration']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/YashodaRG/k8s_jenkins_integration']]])
                 sh 'cd /var/lib/jenkins/workspace/jenkins_k8s_integration'
                 sh 'mvn clean install'
             }
