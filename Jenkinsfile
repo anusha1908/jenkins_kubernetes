@@ -17,7 +17,7 @@ pipeline {
         stage('Push image to Hub'){
             steps{
                 script{
-                   sh 'docker login -u anusha1908 -p dckr_pat_K10y0IybdJZDgXtoT-ggg90QY2U'
+                   sh 'docker login -u anusha1908 -p Anusha1908'
                     sh 'docker push  anusha1908/cicdpipeline'
                 }
             }
