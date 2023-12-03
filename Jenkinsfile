@@ -3,7 +3,7 @@ pipeline {
     stages{
         stage('Build Maven'){
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/YashodaRG/jenkins_kubernetes']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/anusha1908/jenkins_kubernetes.git']]])
                 sh 'cd /var/lib/jenkins/workspace/jenkins_k8s_integration'
                 sh 'mvn clean install'
             }
@@ -11,15 +11,15 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t yashodarg/cicdpipeline .'
+                    sh 'docker build -t anusha1908/cicdpipeline .'
                 }
             }
         }
         stage('Push image to Hub'){
             steps{
                 script{
-                   sh 'docker login -u yashodarg -p Dockerhub2023$'
-                    sh 'docker push  yashodarg/cicdpipeline'
+                   sh 'docker login -u anusha1908 -p dckr_pat_K10y0IybdJZDgXtoT-ggg90QY2U'
+                    sh 'docker push  anusha1908/cicdpipeline'
                 }
             }
         }
