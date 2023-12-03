@@ -10,7 +10,7 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t anusha1908/cicdpipeline .'
+                    sh 'docker build -t anusri1908/ci-cd .'
                 }
             }
         }
@@ -19,7 +19,7 @@ pipeline {
                script {
     docker.withRegistry('https://registry-1.docker.io', 'dockerhub') {
         
-        docker.image('anusha1908/cicdpipeline').push()
+        docker.image('anusri1908/ci-cd').push()
     }
 }
 
