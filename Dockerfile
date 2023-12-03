@@ -1,4 +1,7 @@
-FROM openjdk:8
-EXPOSE 8080
-ADD target/devops-integration.jar devops-integration.jar
-ENTRYPOINT ["java","-jar","/devops-integration.jar"]
+FROM maven:amazoncorretto as build
+WORKDIR /javaapp
+COPY . .
+RUN mvn clean install
+
+FROM adhig93/tomcat-conf
+COPY --from=build /javaapp/target/*.war /usr/local/tomcat/webapps/
