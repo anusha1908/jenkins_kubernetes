@@ -1,9 +1,11 @@
 pipeline {
     agent any
     stages{
-       stage('Checkout') {
+      stage('Build Maven') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], userRemoteConfigs: [[url: 'https://github.com/anusha1908/jenkins_kubernetes.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: 'main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/anusha1908/jenkins_kubernetes.git']]])
+                sh 'cd /var/lib/jenkins/workspace/jenkins_k8s_integration'
+                sh 'mvn clean install'
             }
         }
         stage('Build docker image'){
