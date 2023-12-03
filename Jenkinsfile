@@ -16,10 +16,13 @@ pipeline {
         }
         stage('Push image to Hub'){
             steps{
-                script{
-                   sh 'docker login -u anusha1908 -p Anusha1908'
-                    sh 'docker push  anusha1908/cicdpipeline'
-                }
+               script {
+    docker.withRegistry('https://registry-1.docker.io', 'dockerhub') {
+        
+        docker.image('anusha1908/cicdpipeline').push()
+    }
+}
+
             }
         }
         stage('Deploy to k8s'){
